@@ -1,0 +1,132 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  form
+{% endblock %}
+
+{% block form %}
+
+
+{% if selectt %}
+
+
+<div  class="product" style="margin-left:350px;">
+
+  <div class="container-fluid">
+
+    <div class="row" >
+
+          <div class="col-md-4">
+            <div class="item">
+              <!-- Item's image -->
+              <img class="img" src="static/images/{{ selectt.img_name }}" alt="">
+              <!-- Item details -->
+              <div class="item-dtls">
+                <!-- product title -->
+                <h3><a > {{ selectt.name }}</a></h3>
+                {% if select.stock_units != 0 %}
+                <div class="form-group">
+                <h4 style="color:green">IN STOCK  {{ selectt.stock_units }} UNITS</h4>
+
+               </div>
+                {% else %}
+                <h4 style="color:red">OUT OF STOCK</h4>
+                {% endif %}
+                <!-- price -->
+                <h4>{{ select.price }} DA</h4>
+              </div>
+              <!-- add to cart btn -->
+            </div>
+          </div>
+
+          <div class=" col-md-4" style="margin-left:150px;" >
+             <div  style="padding:20px">
+                  <div class="form-group">
+                    <input style="display:none" readonly  type="number" step="0.01" id="price" name="price" value="{{ selectt.price }}"  >
+                    <h4>UNITS : </h4>
+                    <input style="margin-top=20px; font-size:24px;width:100px; height:50px" type="number" id="unit" name="unit" value="{{ selectt.units }}" placeholder="units" onclick="total()" onkeydown="total()" onkeyup="total()" class="form-control" autofocus>
+
+                  </div>
+                  <form action="/add" method ="POST">
+                   <div class="form-group">
+                    <h4>TOTAL : DA </h4>
+                    <input  style="height:50px;width:100px;font-size:24px; background:#32c8de" readonly  type="number" step="0.01" id="total" name="total" value = "{{ selectt.cost }}" >
+                    <input  readonly  type="number"  id="units" name="units" style="display:none" >
+                    <input  readonly  type="number"   name="product_id" value="{{ selectt.id }}" style="display:none" >
+                   </div>
+                   <button style="height:50px" type="submit" value="add" name="action" class="btn-primary btn-md"> ADD TO CART <i class="fa fa-shopping-cart"></i></button>
+                  </form>
+            </div>
+          </div>
+
+     </div>
+    </div>
+  </div>
+
+{% endif %}
+
+
+
+{% if select %}
+
+<div class="orderproduct">
+  <div class="container">
+  <div class="row">
+       <div class="col-md-9">
+        <div class="newitem">
+           <div class="row">
+             <form action = "/add" method="post">
+
+                  <div class="col-md-3">
+                    <img src= "static/images/{{ select.img_name }}" name="img" id ="img"  >
+                    <input style="display:none" readonly id="img_name" name="img_name" value="">
+                  </div>
+
+                  <div class="col-md-8">
+                    <div class="newitem element">
+
+                        <div class="form-group">
+                            <input readonly type="text" name="name" style="display:none" value="{{ select.name }}" ">
+                            <h4>{{ select.name }} </h4>
+                        </div>
+
+                        <div class="form-inline">
+                          <input type="number" id="price" name="price" value ="{{ select.price }}" readonly  />
+                          <label>  DA / Fardeau </label>
+                        </div>
+
+
+                          <div class="input-group">
+                                  <button id="down" type="button"  ><span class="glyphicon glyphicon-minus"></span></button>
+                                  <input  readonly type="text" id="units" name="units" value="{{ select.units }}" />
+                                  <button id="up" type="button"  ><span class="glyphicon glyphicon-plus"> </span></button>
+                          </div>
+
+                        <div class="form-group">
+                           <label style="color:blue">TOTAL :</label>
+                           <input type="number" class="total" id="total" name="total" readonly value="0"/>
+                           <label style="color:white"> DA </label>
+                        </div>
+
+                        <div class="form-group">
+                          <input readonly style="display:none" name="product_id" value="{{ select.id }}" >
+                          <button style="height:50px" type="submit" value="add" name="action" class="btn-primary btn-md"> AJOUTER AU PANIER <i class="fa fa-shopping-cart"></i></button>
+                        </div>
+
+                    </div>
+                  </div>
+
+              </form>
+             </div>
+           </div>
+          </div>
+        </div>
+       </div>
+
+  </div>
+
+</div>
+{% endif %}
+
+
+{% endblock %}

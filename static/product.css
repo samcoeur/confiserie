@@ -1,0 +1,163 @@
+
+.jumbotron {
+  background-color: #f4511e;
+  color: #fff;
+  margin-top:-20px;
+  padding: 0px 0px;
+  height:180px;
+}
+
+
+.li
+{
+  background-color: #f4511e;
+  text: black;
+}
+
+.li:hover
+{
+  background-color: #f4511e;
+}
+
+
+
+.product
+{
+    width:1900px;
+    min-height:700px;
+    max-height:700px;
+    padding:10px;
+    margin: 10px 10px;
+    overflow:scroll;
+}
+.product  .item {
+    position: relative;
+    height:100%;
+    width: 100%;
+    max-width:441px;
+    margin: 10px 10px ;
+    padding: 16px;
+    border-radius: 35px;
+    overflow: hidden;
+    border:1px solid #DE28CC;
+    background:#117DDC;
+  }
+
+
+  .item img
+  {
+    height:250px;
+    width: 100%;
+    max-width: 380px;
+    margin: 0 auto;
+    border-radius: 1px;
+
+
+  }
+  .item label
+  {
+    color:black;
+    font-size:16px;
+    text-transform: uppercase;
+  }
+  .item input
+  {
+    color:white;
+    font-size:14px;
+    font-family:"Gill Sans", sans-serif;
+    background :#117DDC;
+    border: none;
+    text-transform: uppercase;
+  }
+
+.item select
+{
+  color:white;
+    font-size:16px;
+    font-family:"Gill Sans", sans-serif;
+    background :#117DDC;
+    border: none;
+    text-transform: uppercase;
+}
+
+
+
+
+
+
+
+
+.product  .newitem {
+  position: relative;
+  height:100%;
+  width: 100%;
+  max-width:1100px;
+  max-height:500px;
+  margin: 25px auto ;
+  padding: 45px;
+  border-radius: 15px;
+  overflow: hidden;
+  border:2px solid black;
+  background:#117DDC;
+}
+
+
+
+.newitem img
+{
+  height:100%;
+  width: 100%;
+  min-height:400px;
+  min-width: 400px;
+  margin: 10 auto;
+  border: 1px solid #eee;
+  border-radius: 5px;
+
+}
+.newitem .element
+{
+  height:100%;
+  width:100%;
+  min-height:400px;
+  border: 0px solid black;
+  padding:20px;
+}
+.element input
+{
+  margin:10px;
+  font-size : 20px;
+  background :#117DDC;
+  border:none;
+  color:white;
+}
+.element label
+{
+  margin:5px;
+  font-size : 24px;
+  background :#117DDC;
+
+}
+.element button
+{
+margin-left:150px;
+margin-top:30px;
+font-size: 28px;
+color:white;
+background : green;
+
+}
+.element button:hover
+{
+
+font-size: 28px;
+color:white;
+background : green;
+
+}
+.element select
+{
+  border:none;
+  background:#117DDC;
+  font-size:20px;
+  color:white;
+}

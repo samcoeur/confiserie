@@ -1,0 +1,181 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  form
+{% endblock %}
+
+{% block cart %}
+
+
+
+{% if carts %}
+<h3 style=" margin-top:0px; color:#32c8de;">Your Shopping Cart </h3>
+
+
+
+
+
+
+
+<div  class="shop-items">
+
+
+        <div class="container-fluid">
+
+          <div class="container-fluid"  style="border: 1px solid black;margin-left:-25px; background:black;min-width:1600px">
+          <div class="row""></div>
+          <div class="col-md-3" style="text-align:center; height:50px; ">
+            <h4 style="margin-top:10%; color:white" > {{ carts[0].customername }}</h4>
+          </div>
+          <div class="col-md-2">
+            <select style="font-size:18px;background:#117DDC; height:50px; color:white; margin-top:20px" name="delivery" id="delivery">
+              <option disabled selected hidden >Choose delivery method</option>
+              <option value="location">Delivery to my location  </option>
+              <option value="saab">Pick up at the store  </option>
+            </select>
+          </div>
+          </div>
+           </div>
+
+
+
+          <div class="row" >
+              {% for product in carts %}
+              <form style="margin-top:50px;" class="col-md-3 col-sm-6" action="/select" method="POST">
+                <!-- Restaurant Item -->
+                <div class="item">
+                  <!-- Item's image -->
+                  <img class="img" src="static/images/{{ product.img_name }}" alt="">
+                  <!-- Item details -->
+                  <div class="item-dtls">
+                    <!-- product title -->
+                    <h5 style="color:orange">{{ product.name }}</h5>
+                    <h4 style="color:black"> UNITS : {{ product.units }} </h4>
+                    <h5 style="color:white" >PRICE  : {{ product.price }} DA</h5>
+                    <h4 style="color:white">TOTAL : {{ product.cost }}  DA</h4>
+                  </div>
+                  <!-- add to cart btn -->
+                    <div class="ecom bg-lblue" >
+                    <input style="display:none" type="number" readonly value="{{ product.id }}" name="product_id">
+                    <input style="display:none" type="number" readonly value="{{ product.units }}" name="units">
+                    <input style="display:none" type="number" step="0.01" readonly value="{{ product.cost }}" name="cost">
+                    <button class="btn" type="submit" name="action" value="edit" style="background:LIGHTGREEN;"> EDIT </button>
+                    <button class="btn" type="submit" name="action" value="remove" style="background:red;"> REMOVE </button>
+                    </div>
+                </div>
+              </form>
+            {% endfor %}
+         </div>
+
+          <div class="container-fluid" style="margin-top:30px">
+            <div class="row">
+              <div class="col-md-3">
+                <div class="form-group" >
+                 <h4>TOTAL UNITS :</h4>
+                 <h4 style="color:red">{{ carts[0].total_units }}</h4>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group" >
+                 <h4>TOTAL COST :</h4>
+                 <h4 style="color:green">{{ carts[0].total }}  DA</h4>
+                </div>
+              </div>
+              <div class="col-md-3">
+                <div class="form-group" >
+                 <h4>DELIVERY ADDRESS :</h4>
+                 <h4 style="color:green">{{ carts[0].address }} </h4>
+                </div>
+              </div>
+              <form  action="/cart" method ="POST" style="margin-left:70%;">
+                <button  type="submit" name="action" value="cancel" class="btn btn-danger btn-lg">Cancel</button>
+                <button style="margin-left:35px" type="submit" name="action" value="finalize" class="btn btn-success btn-lg">Finalize</button>
+
+                <input type="text" name="address" readonly style="display:none" value="{{ carts[0].address }}" >
+                <input type="text" name="customername" readonly style="display:none" value="{{ carts[0].customername }}" >
+                <input type="number" step="0.01" name="total_cost" readonly style="display:none" value="{{ carts[0].total }}" >
+                <input type="number" name="total_units" readonly style="display:none" value="{{ carts[0].total_units }}" >
+                <input type="NUMBER" name="product_units" readonly style="display:none" value="{{ carts[0].product_unitS }}" >
+              </form>
+           </div>
+          </div>
+
+
+        </div>
+
+
+{% else %}
+
+     <div class="container-fluid">
+      <div class="row" >
+        <div class="col-md-12">
+          <h2 style=" color:#32c8de; margin-left:20px;">Your Shopping Cart is empty</h2>
+        </div>
+      </div>
+      </div>
+
+
+{% endif %}
+
+
+{% if orders %}
+
+<div class="shop-items">
+
+     <div class="row">
+      <div class="col-md-5">
+
+      </div>
+      <div class="col-md-3">
+      <h4 style="align-item:center" ></h4>
+      </div>
+      <div class="col-md-3">
+      <select style="font-size:18px; height:40px" name="delivery" id="delivery">
+       <option disabled selected hidden >Choose delivery method</option>
+       <option value="location">Delivery to my location  </option>
+       <option value="saab">Pick up at the store  </option>
+     </select>
+    </div>
+   </div>
+
+     <div class="container-fluid">
+       <h style=" color:lightgreen;">Your Shopping Cart </h>
+
+       <div class="row" >
+           {% for product in orders %}
+           <div class="col-md-3 col-sm-6">
+             <!-- Restaurant Item -->
+             <div class="item">
+               <!-- Item's image -->
+               <img class="img" src="static/images/{{ product.img_name }}" alt="">
+               <!-- Item details -->
+               <div class="item-dtls">
+                 <!-- product title -->
+                 <h><a href="#">{{ product.name }}</a></h>
+                 <h5 style="color:black"> UNITS : {{ product.units }} </h5>
+                 <h5>PRICE  : {{ product.price }} DA</h5>
+                 <h5 style="color:GREEN">TOTAL : {{ product.cost }}  DA</h5>
+               </div>
+               <!-- add to cart btn -->
+                 <div class="ecom bg-lblue" >
+                 <input style="display:none" type="number" readonly value="{{ product.id }}" name="product_id">
+                 <input style="display:none" type="number" readonly value="{{ product.units }}" name="units">
+                 <input style="display:none" type="number" step="0.01" readonly value="{{ product.cost }}" name="cost">
+                 </div>
+             </div>
+            </div>
+            {% endfor %}
+       </div>
+
+
+
+
+
+     </div>
+   </div>
+
+
+{% endif %}
+
+
+{% endblock %}

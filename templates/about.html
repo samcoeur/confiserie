@@ -1,0 +1,63 @@
+{% extends "layout.html" %}
+
+{% block title %}
+   about us
+{% endblock %}
+
+{% block about %}
+
+{% if about %}
+
+<div class="about-section">
+    <h1>About Us Page</h1>
+    <p> Nous les Haddadi </p>
+    <p> Notre mission est de vous rendre heureux et de delivrer des produits a votre convenience</p>
+  </div>
+
+  <h2 style="text-align:center">Our Team</h2>
+  <div class="row">
+    <div class="column">
+      <div class="card">
+        <img src = "static/images/location.png" alt="Jane" style="width:100%">
+        <div class="container">
+          <h3> notre reussite est la votre</h3>
+
+          <p>Au Confectionarie Haddadi ,on vous propose  </p>
+          <p> un service de commander en ligne et de </p>
+          <p> livraison à votre magazin  sur Alger</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="card">
+        <img src = "static/images/location.png" alt="Mike" style="width:100%">
+        <div class="container">
+          <h2>location</h2>
+          <p class="title">DRAA EL MIZAN</p>
+          <p>a coter de technicum et le centre de formation</p>
+          <p>Soyez les bienvenu</p>
+          <p>Contact : 980-395-0983</p>
+
+        </div>
+      </div>
+    </div>
+
+    <div class="column">
+      <div class="card">
+        <img src="/w3images/team3.jpg" alt="John" style="width:100%">
+        <div class="container">
+          <h2>John Doe</h2>
+          <p class="title">Designer</p>
+          <p>Some text that describes me lorem ipsum ipsum lorem.</p>
+          <p>john@example.com</p>
+          <p><button class="button">Contact</button></p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+{% endif %}
+
+{% endblock %}

@@ -1,0 +1,131 @@
+{% extends "layout.html" %}
+
+{% block title %}
+  form
+{% endblock %}
+
+{% block form %}
+
+
+{% if register %}
+<div class="shop-items">
+<form class="form-horizontal" role="form" action="/register" method="POST">
+  <h2>Register</h2>
+  <div class="form-group">
+      <label  class="col-sm-3 control-label">First Name :</label>
+      <div class="col-sm-9">
+          <input type="text" name="firstname" placeholder="First Name" class="form-control" autofocus>
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="firstName" class="col-sm-3 control-label">Last Name :</label>
+    <div class="col-sm-9">
+        <input type="text" name="lastname" placeholder="Last Name" class="form-control" autofocus>
+    </div>
+  </div>
+  <div class="form-group">
+      <label for="email" class="col-sm-3 control-label">Email :</label>
+      <div class="col-sm-9">
+          <input type="email" name="email" placeholder="Email" class="form-control">
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="address" class="col-sm-3 control-label">Adress :</label>
+    <div class="col-sm-9">
+        <input type="address" name="address" placeholder="address" class="form-control" autofocus>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="phonenumber" class="col-sm-3 control-label">Phone :</label>
+    <div class="col-sm-9">
+        <input type="text" name="phone_number" placeholder="phone number" class="form-control" autofocus>
+    </div>
+  </div>
+  <div class="form-group">
+    <label for="businessname" class="col-sm-3 control-label">Business :</label>
+    <div class="col-sm-9">
+        <input type="text" name="business_name" placeholder="business name" class="form-control" autofocus>
+    </div>
+  </div>
+<div class="form-group">
+  <label for="username" class="col-sm-3 control-label">Username :</label>
+  <div class="col-sm-9">
+      <input type="text" name="username" placeholder="username" class="form-control" required>
+  </div>
+</div>
+  <div class="form-group">
+      <label for="password" class="col-sm-3 control-label">Password :</label>
+      <div class="col-sm-9">
+          <input type="password" name="password" placeholder="Password" class="form-control" required>
+      </div>
+  </div>
+  <div class="form-group">
+    <label for="confirmation" class="col-sm-3 control-label">Confirmation :</label>
+    <div class="col-sm-9">
+        <input type="password" name="confirmation" placeholder="confirmation" class="form-control" required>
+    </div>
+</div>
+
+  <div class="form-group">
+      <label class="control-label col-sm-3">Gender</label>
+      <div class="col-sm-6">
+          <div class="row">
+              <div class="col-sm-4">
+                  <label class="radio-inline">
+                      <input type="radio" name="gender" value="Female">Female
+                  </label>
+              </div>
+              <div class="col-sm-4">
+                  <label class="radio-inline">
+                      <input type="radio" name="gender" value="Male">Male
+                  </label>
+              </div>
+
+          </div>
+      </div>
+   </div>
+  <div class="form-group">
+      <div class="col-sm-9 col-sm-offset-3">
+          <button type="submit" class="btn btn-primary btn-block">Register</button>
+      </div>
+  </div>
+</form> <!-- /form -->
+</div>
+{% endif %}
+
+
+
+{% if login %}
+<div class="shop-items">
+<form class="form-horizontal" role="form" action="/login" method="POST">
+  <h2>Login</h2>
+  <div class="form-group">
+      <label  class="col-sm-3 control-label">Username :</label>
+      <div class="col-sm-9">
+          <input type="text" name="username" placeholder="username" class="form-control" autofocus>
+      </div>
+  </div>
+
+  <div class="form-group">
+      <label for="password" class="col-sm-3 control-label">Password :</label>
+      <div class="col-sm-9">
+          <input type="password" name="password" placeholder="Password" class="form-control" required>
+      </div>
+  </div>
+
+  <div class="form-group">
+      <div class="col-sm-9 col-sm-offset-3">
+          <button type="submit" class="btn btn-primary btn-block">Login</button>
+      </div>
+  </div>
+</form> <!-- /form -->
+</div>
+{% endif %}
+
+
+
+
+
+
+
+{% endblock %}

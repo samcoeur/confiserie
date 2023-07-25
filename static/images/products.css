@@ -1,0 +1,39 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+
+
+body{
+    display:flex;
+    align-items:absolute ;
+    justify-content:first baseline;
+    flex-direction: column;
+    /*background : url(imagets/candy.jpg)no-repeat center center fixed;*/
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    position:fixed;
+    left :0;
+    top:0;
+    bottom:0;
+    right:0;
+}
+
+.myproduct{
+    background : rgba(21, 18, 18, 0.847);
+    display:flex;
+    position :relative;
+    justify-content:flex-start;
+    height:90%;
+    width:90%;
+    float:right;
+    margin-top:3px;
+    border: #2f63ac;
+    border-color: #537fbe;
+    overflow:scroll ;
+
+}
+
+td
+{
+    font-size:32px;
+}

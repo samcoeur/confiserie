@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <title>CompanyHaddadi</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="static/style.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="{{url_for('static', filename='order.js')}}"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+</head>
+
+
+<body>
+
+  <nav class="navbar navbar-inverse bg-primary " style="background:blue" >
+
+      <div class="navbar-header">
+        <a class="navbar-brand" style="color:white ; font-size:18px;" href="#">WE VALUE OUR CUSTOMERS</a>
+      </div>
+      <ul class="nav navbar-nav" >
+        <li  ><a style="color:white ;font-size:18px;" href="#">Home</a></li>
+        <li><a style="color:white; font-size:18px;" href="#">About</a></li>
+        <li><a style="color:white; font-size:18px;"href="#">Product</a></li>
+      </ul>
+      {% if get_flashed_messages() %}
+          <p style="margin-left:20%" class="nav navbar-nav">{{ get_flashed_messages() | join(" ") }}</p>
+    {% endif %}
+
+
+      {% if not session["user_id"] %}
+      <ul class="nav navbar-nav navbar-right">
+        <li><a style="color:white ; font-size:18px;" href="/register"><span  class="glyphicon glyphicon-user"></span> Register</a></li>
+        <li style="margin-right:30px;"><a style="color:white ; font-size:18px;" href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+      </ul>
+      {% else %}
+      <ul class="nav navbar-nav navbar-right">
+        <li><a href="/cart" class="notification"><i class="fa fa-shopping-cart" style="font-size:23px; margin-bottom:5px; color:white">
+          {% if cart_notification != 0 %}
+          <span class="badge">{{ cart_notification }}</span>
+          {% endif %}
+        </i></a></li>
+        <li><a style="color:white ; font-size:18px;" href="/"><span class="glyphicon glyphicon-user"></span> {{ session["firstname"] }} </a></li>
+        <li style="margin-right:40px;"><a style="color:white ; font-size:18px;" href="/logout"><span class="glyphicon glyphicon-log-in"></span>Log out</a></li>
+      </ul>
+      {% endif %}
+
+  </nav>
+
+
+      <div class="jumbotron text-center" >
+        <h1>CONFECTIONARY HADDADI </h1>
+        <p style="color:white;"><strong>Our mission is to deliver</strong></p>
+
+          <form class="form-inline" action="/search" method ="POST">
+
+              <div class="input-group-btn">
+                <input style=" margin-left:80px;border-radius:15px" type="text" class="form-control" size="50" name="search" placeholder="search" required>
+                <button style="margin-left:25px; background:#32c8de;font-size:16px; border-radius:15px; color:black" type="submit" class="btn btn-danger">Search</button>
+              </div>
+
+          </form>
+
+      </div>
+
+
+
+      <div class="sidebar" style="margin-top:-30px">
+        <a class="active" href="#home">Home</a>
+        <a href="#news">News</a>
+        <a href="#contact">Contact</a>
+        <a href="#about">About</a>
+      </div>
+
+
+<div class="container-fluid">
+
+     {% block form %}{% endblock %}
+     {% block order %} {% endblock %}
+     {% block cart %}{% endblock %}
+
+
+     <div class="container" style="margin-top:-20px; margin-left:50px">
+         <div class="row">
+            <h2 style="margin-left:20px; color:blue">Our Inventory</h2>
+            <div class="col-md-8">
+            <form  action="/" method ="POST">
+              <button type="submit" name="department" value="snack" class="btn btn-primary btn-lg">SNACK</button>
+              <button type="submit" name="department" value="candy" class="btn btn-success btn-lg">CANDY</button>
+              <button type="submit" name="department" value="water"class="btn btn-info btn-lg">WATER</button>
+              <button type="submit" name="department" value="juice"class="btn btn-warning btn-lg">JUICE</button>
+              <button type="submit" name="department" value="soda" class="btn btn-danger btn-lg">SODA</button>
+            </form>
+            </div>
+            <div class="col-md-4">
+            <form>
+              <button type="submit" name="historic" value="historic" class="btn btn-primary btn-lg">Cart Historic </button>
+            </form>
+            </div>
+          </div>
+
+     </div>
+
+      <div class="shop-items">
+
+          <div class="col-md-3 col-sm-9"  style="border: 1px solid orange ;">
+              {% for product in products %}
+              <form   action="/select" method="POST">
+                <!-- Restaurant Item -->
+                <div class="item">
+                  <!-- Item's image -->
+                  <img class="img" src="static/images/{{ product.img_name }}" alt="">
+                  <!-- Item details -->
+                  <div style="background:orange" class="item-dtls">
+                    <!-- product title -->
+                    <h4><a href="#">{{ product.name }}</a></h4>
+                    {% if product.stock_units != 0 %}
+                    <h style="color:green"><strong>IN STOCK</strong></h>
+                    {% else %}
+                    <h style="color:red"><strong>OUT OF  STOCK</strong></h>
+                    {% endif %}
+                    <!-- price -->
+                    <h4>{{ product.price }} DA</h4>
+                  </div>
+                  <!-- add to cart btn -->
+                    <div class="ecom bg-lblue" >
+                    <input style="display:none" type="number" readonly value="{{ product.id }}" name="product_id">
+                    <input style="display:none" type="number" readonly value="0" name="units">
+                    <input style="display:none" type="number" step="0.01" readonly value="0" name="cost">
+                    <button class="btn" type="submit" > ORDER </button>
+                    </div>
+                </div>
+              </form>
+            {% endfor %}
+          </div>
+        </div>
+    
+
+
+
+
+</div>
+
+</body>
+</html>
