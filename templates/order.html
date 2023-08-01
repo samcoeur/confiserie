@@ -14,7 +14,7 @@
 
   <div class="container-fluid">
 
-    <div class="row" >
+    <div class="row" style="min-width:550px" >
 
           <div class="col-md-4">
             <div class="item">
@@ -39,7 +39,7 @@
             </div>
           </div>
 
-          <div class=" col-md-4" style="margin-left:150px;" >
+          <div class=" col-md-8" style="margin-left:150px;" >
              <div  style="padding:20px">
                   <div class="form-group">
                     <input style="display:none" readonly  type="number" step="0.01" id="price" name="price" value="{{ selectt.price }}"  >
@@ -68,64 +68,62 @@
 
 
 {% if select %}
-
-<div class="orderproduct">
-  <div class="container">
-  <div class="row">
-       <div class="col-md-9">
+<div class="container">
+<div class="orderproduct" style="min-width:550px">
+   <div class="row">
+       <div class="col-md-2">
         <div class="newitem">
            <div class="row">
+
              <form action = "/add" method="post">
 
-                  <div class="col-md-3">
+                  <div class="col-md-12">
+
                     <img src= "static/images/{{ select.img_name }}" name="img" id ="img"  >
                     <input style="display:none" readonly id="img_name" name="img_name" value="">
+
+                    <div class="form-group">
+                      <input  readonly type="text" name="name" style="display:none" value="{{ select.name }}" >
+                      <h4>{{ select.name }} </h4>
                   </div>
 
-                  <div class="col-md-8">
-                    <div class="newitem element">
-
-                        <div class="form-group">
-                            <input readonly type="text" name="name" style="display:none" value="{{ select.name }}" ">
-                            <h4>{{ select.name }} </h4>
-                        </div>
-
-                        <div class="form-inline">
-                          <input type="number" id="price" name="price" value ="{{ select.price }}" readonly  />
-                          <label>  DA / Fardeau </label>
-                        </div>
-
-
-                          <div class="input-group">
-                                  <button id="down" type="button"  ><span class="glyphicon glyphicon-minus"></span></button>
-                                  <input  readonly type="text" id="units" name="units" value="{{ select.units }}" />
-                                  <button id="up" type="button"  ><span class="glyphicon glyphicon-plus"> </span></button>
-                          </div>
-
-                        <div class="form-group">
-                           <label style="color:blue">TOTAL :</label>
-                           <input type="number" class="total" id="total" name="total" readonly value="0"/>
-                           <label style="color:white"> DA </label>
-                        </div>
-
-                        <div class="form-group">
-                          <input readonly style="display:none" name="product_id" value="{{ select.id }}" >
-                          <button style="height:50px" type="submit" value="add" name="action" class="btn-primary btn-md"> AJOUTER AU PANIER <i class="fa fa-shopping-cart"></i></button>
-                        </div>
-
-                    </div>
+                  <div class="form-group">
+                      <input style="border:none;background:#117DDC;width:50px;color:white;font-size:14px;display:none" type="number" id="price" name="price" value ="{{ select.price  }}" readonly  >
+                      <h4 style="color:white">{{ select.price }}  DA </h4>
                   </div>
+
+                 <div class="input-group" style="margin-left:35%">
+                      <button style="margin:5px;font-size:18px" id="down" type="button"  ><span class="glyphicon glyphicon-minus"></span></button>
+                      <input style="width:40px;background:#117DDC;font-size:24px;border:none;text-align:center" readonly type="text" id="units" name="units" value="{{ select.units }}" />
+                      <button style="margin:5px; font-size:18px" id="up" type="button"  ><span class="glyphicon glyphicon-plus"> </span></button>
+                 </div>
+
+                 <div class="form-group" style="margin-top:20px;" >
+                  <label style="color:white;font-size:16px">TOTAL</label>
+                  <input style="width:80px;color:white;background:#117DDC;font-size:18px;border:none;text-align:end" type="number" class="total" id="total" name="total" readonly value="0"/>
+                  <label style="color:white"> DA </label>
+                </div>
+
+                 <div class="form-group">
+                      <input readonly style="display:none" name="product_id" value="{{ select.id }}" >
+                      <button style="height:50px" type="submit" value="add" name="action" class="btn-primary btn-md"> AJOUTER AU PANIER <i class="fa fa-shopping-cart"></i></button>
+                 </div>
+
+
+                  </div>
+
 
               </form>
+
              </div>
            </div>
           </div>
         </div>
        </div>
 
-  </div>
 
-</div>
+
+
 {% endif %}
 
 

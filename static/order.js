@@ -23,6 +23,14 @@ document.addEventListener("DOMContentLoaded", () => {
 });
 units = parseInt(document.getElementById("units").value);
 document.querySelector('#total').value = units * document.getElementById('price').getAttribute('value');
+
+
+
+ /* load imgae file */
+
+
+
+
 });
 
 
@@ -60,14 +68,35 @@ function add()
           })
         })
 }
-//action="/selected" method="POST"
-
-function loadimg()
-{
-          imgFile =document.getElementById("myFile");
-          document.getElementById("img").src = URL.createObjectURL(event.target.files[0]);
-          document.getElementById("img_name").setAttribute("value",imgFile.files.item(0).name);
-
-}
 
 
+
+
+
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+           cart_container = document.querySelector("#cart_container");
+          document.querySelector("#cart").addEventListener('click', ()=>{
+               if ( cart_container.style.display == "none" )
+               {
+               cart_container.style.display = 'block'
+               }
+               else
+               {
+               cart_container.style.display = 'none'
+               }
+          })
+
+
+
+})
+
+document.addEventListener("DOMContentLoaded",()=>{
+
+     document.querySelector("#finalize").addEventListener("click",()=>{
+          document.querySelector("#method").value = document.querySelector("#delivery").value;
+          document.querySelector("#form_cart").submit;
+     })
+
+})

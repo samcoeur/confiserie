@@ -19,69 +19,84 @@
 
 <body>
 
-  <nav class="navbar navbar-inverse bg-primary " style="background:#117DDC" >
-       {% if session["user_id"] == 1 %}
-      <div class="navbar-header">
-        <a class="navbar-brand" style="color:red ; font-size:18px;" href="#">Admin</a>
-      </div>
-      {% else %}
-      <div class="navbar-header">
-        <a class="navbar-brand" style="color:WHITE ; font-size:18px;" href="#">Welcome our Valuable costomer</a>
-      </div>
-      <div class="navbar-header">
-        <a class="navbar-brand" style="color:WHITE ; font-size:18px;" href="#">  {{ session["day"] }} </a>
-      </div>
-      <div class="navbar-header">
-        <a class="navbar-brand" style="color:silver; font-size:18px;" href="#">  {{ session["today"] }} </a>
-      </div>
 
-      {% endif %}
-      <ul class="nav navbar-nav" >
-        {% if session["user_id"] == 1 %}
-        <li  ><a style="color:white ;font-size:18px;" href="/myproduct">My Products</a></li>
-        <li><a style="color:white; font-size:18px;" href="newproduct">Add Product</a></li>
-        <li><a style="color:white; font-size:18px;"href="#">Product</a></li>
-        {% endif %}
-      </ul>
-      {% if get_flashed_messages() %}
-          <p style="margin-left:20%" class="nav navbar-nav">{{ get_flashed_messages() | join(" ") }}</p>
-    {% endif %}
+    <div class="container-fluid" style="background:black;min-width:620px">
 
-
-      {% if not session["user_id"] %}
-      <ul class="nav navbar-nav navbar-right">
-        <li><a style="color:white ; font-size:18px;" href="/register"><span  class="glyphicon glyphicon-user"></span> Register</a></li>
-        <li style="margin-right:30px;"><a style="color:white ; font-size:18px;" href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
-      </ul>
-      {% else %}
-      <ul class="nav navbar-nav navbar-right">
-        <li><a href="/cart" class="notification"><i class="fa fa-shopping-cart" style="font-size:23px; margin-bottom:5px; margin-right:50px; color:white">
-          {% if cart_notification != 0 %}
-          <span class="badge">{{ cart_notification }}</span>
-          {% endif %}
-        </i></a></li>
-        <li><a style="color:white ; font-size:18px;" href="/"><span class="glyphicon glyphicon-user"></span> {{ session["firstname"] }} </a></li>
-        <li style="margin-right:40px;"><a style="color:white ; font-size:18px;" href="/logout"><span class="glyphicon glyphicon-log-in"></span>Log out</a></li>
-      </ul>
-      {% endif %}
-
-  </nav>
-
-
-      <div class="jumbotron text-center" >
+      <div class="jumbotron text-center" style="min-width:550px;min-height:220px ;max-width:1950px;" >
         <h2 style="padding:20px">CONFECTIONARY HADDADI </h2>
-        <p style="color:white;"><strong>Our mission is to deliver</strong></p>
+        <p style="color:white;"><strong>Welcome Our Valuable customer</strong></p>
 
           <form class="form-inline" action="/search" method ="POST">
 
               <div class="input-group-btn">
-                <input style=" margin-left:80px;border-radius:15px" type="text" class="form-control" size="60" name="search" placeholder="search" required>
-                <button style="margin-left:25px; background:#32c8de;font-size:16px; border-radius:15px; color:black" type="submit" class="btn btn-primary">Search</button>
+                <input style="border-radius:15px;height:50px;font-size:18px" type="text" class="form-control" size="60" name="search" placeholder="search" required>
+                <button style=" background:#32c8de;margin:8px;font-size:24px; border-radius:15px; color:black" type="submit" class="btn btn-primary">Search</button>
               </div>
 
           </form>
-
       </div>
+
+
+
+      <nav class="navbar navbar-inverse bg-primary " style="background:#117DDC;min-width:550px;max-width:1950px;" >
+        {% if session["user_id"] == 1 %}
+       <div class="navbar-header">
+         <a class="navbar-brand" style="color:red ; font-size:20px;" href="#">Admin</a>
+       </div>
+       {% endif %}
+
+       <div class="navbar-header">
+         <a class="navbar-brand" style="color:WHITE ; font-size:20px;" href="#">  {{ session["day"] }} </a>
+       </div>
+       <div class="navbar-header">
+         <a class="navbar-brand" style="color:black; font-size:20px;" href="#">  {{ session["today"] }} </a>
+       </div>
+       <div class="navbar-header">
+        <a class="navbar-brand" style="color:WHITE;font-size:20px;" href="/">Home </a>
+      </div>
+      <div class="navbar-header">
+        <a class="navbar-brand" style="color:WHITE;font-size:20px;" href="/contact">Contact us</a>
+      </div>
+      <div class="navbar-header">
+        <a class="navbar-brand" style="color:WHITE;font-size:20px;" href="/about">About</a>
+      </div>
+
+
+       <ul class="nav navbar-nav" >
+         {% if session["user_id"] == 1 %}
+         <div class="navbar-header">
+          <a class="navbar-brand" style="color:WHITE;font-size:20px;" href="/myproduct">Product Portal</a>
+        </div>
+        <div class="navbar-header">
+          <a class="navbar-brand" style="color:WHITE;font-size:20px;" href="/mycustomer">Customer Portal</a>
+        </div>
+         {% endif %}
+       </ul>
+       {% if get_flashed_messages() %}
+           <p style="margin-left:5%; margin-top:15px" class="nav navbar-nav">{{ get_flashed_messages() | join(" ") }}</p>
+     {% endif %}
+
+
+       {% if not session["user_id"] %}
+       <ul class="nav navbar-nav navbar-right">
+         <li><a style="color:white ; font-size:20px;" href="/register"><span  class="glyphicon glyphicon-user"></span> Register</a></li>
+         <li style="margin-right:10px;"><a style="color:white ; font-size:20px;" href="/login"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+       </ul>
+       {% else %}
+       <ul class="nav navbar-nav navbar-right">
+         <li><a style="color:white ; font-size:20px;" href="/history"> Historic  </a></li>
+         <li><a href="/cart" class="notification"><i class="fa fa-shopping-cart" style="font-size:23px; margin-bottom:5px; margin-right:50px; color:white">
+           {% if cart_notification != 0 %}
+           <span class="badge">{{ cart_notification }}</span>
+           {% endif %}
+         </i></a></li>
+         <li><a style="color:white ; font-size:20px;" href="/"><span class="glyphicon glyphicon-user"></span> {{ session["firstname"] }} </a></li>
+         <li style="margin-right:40px;"><a style="color:white ; font-size:20px;" href="/logout"><span class="glyphicon glyphicon-log-in"></span>Log out</a></li>
+       </ul>
+       {% endif %}
+
+   </nav>
+  </div>
 
 
 <div class="container-fluid">
@@ -89,40 +104,28 @@
 
 
 
-   <div class="row">
-
-    <div class="col-md-1">
-      <div class="sidebar" style="margin-top:-30px;margin-left:-20px">
-        <a class="active" href="/">Home </a>
-        <a href="/news">News</a>
-        <a href="/contact">Contact us</a>
-        <a href="/about">About</a>
-      </div>
-    </div>
-
-
           {% block form %}{% endblock %}
 
 
 
 
-       <div class="container">
+       <div class="container-fluid">
 
         {% if products %}
 
 
-                    <h3 style=" color:blue ;margin-left:00px;margin-top:0px">Our Inventory</h3>
-                    <form  action="/" method ="POST" style="margin-left:20px ; margin-top:25px" >
-                      <button type="submit" name="department" value="snack" class="btn btn-primary btn-lg">SNACK</button>
-                      <button type="submit" name="department" value="candy" class="btn btn-success btn-lg">CANDY</button>
-                      <button type="submit" name="department" value="water"class="btn btn-info btn-lg">WATER</button>
-                      <button type="submit" name="department" value="juice"class="btn btn-warning btn-lg">JUICE</button>
-                      <button type="submit" name="department" value="soda" class="btn btn-danger btn-lg">SODA</button>
+                    <h3 style=" color:blue ;margin-left:20px;margin:10px">Our Inventory</h3>
+                    <form  action="/" method ="POST" style="min-width:550px"  >
+                      <button style="margin:10px" type="submit" name="department" value="snack" class="btn btn-primary btn-lg">SNACK</button>
+                      <button style="margin:10px" type="submit" name="department" value="candy" class="btn btn-success btn-lg">CANDY</button>
+                      <button style="margin:10px" type="submit" name="department" value="water"class="btn btn-info btn-lg">WATER</button>
+                      <button style="margin:10px"type="submit" name="department" value="juice"class="btn btn-warning btn-lg">JUICE</button>
+                      <button style="margin:10px" type="submit" name="department" value="soda" class="btn btn-danger btn-lg">SODA</button>
                     </form>
 
 
 
-          <div class="shop-items" style="margin-top:30px;margin-left:-80px">
+          <div class="shop-items" style="margin-top:30px;margin-left:0%">
            {% for product in products %}
                <div class="col-md-2  ">
                      <form   action="/select" method="POST">
@@ -131,13 +134,13 @@
                         <!-- Item's image -->
                         <img class="img" src="static/images/{{ product.img_name }}" alt="">
                         <!-- Item details -->
-                        <div style="" class="item-dtls">
+                        <div  class="item-dtls">
                           <!-- product title -->
                           <h4 style="color:black">{{ product.name }}</h4>
                           {% if product.stock_units != 0 %}
-                          <h style="color:silver"><strong> IN STOCK</strong></h>
+                          <h4 style="color:silver"><strong> IN STOCK</strong></h4>
                           {% else %}
-                          <h style="color:red">OUT OF  STOCK</h>
+                          <h4 style="color:red">OUT OF  STOCK</h4>
                           {% endif %}
                           <!-- price -->
                           <h4>{{ product.price }} DA</h4>
@@ -164,39 +167,37 @@
              {% block receipt %} {% endblock %}
 
 
-             {% if not products %}
-             <div class="container" style="margin-top:20px; margin-left:0px">
-
-              <div class="row">
-                 <h2 style="margin-left:20px; color:blue">Our Inventory</h2>
-                 <div class="col-md-8">
-                 <form  action="/" method ="POST">
-                   <button type="submit" name="department" value="snack" class="btn btn-primary btn-lg">SNACK</button>
-                   <button type="submit" name="department" value="candy" class="btn btn-success btn-lg">CANDY</button>
-                   <button type="submit" name="department" value="water"class="btn btn-info btn-lg">WATER</button>
-                   <button type="submit" name="department" value="juice"class="btn btn-warning btn-lg">JUICE</button>
-                   <button type="submit" name="department" value="soda" class="btn btn-danger btn-lg">SODA</button>
-                 </form>
-                 </div>
-                 <div class="col-md-4">
-                 <form>
-                   <button type="submit" name="historic" value="historic" class="btn btn-primary btn-lg">Cart Historic </button>
-                 </form>
-                 </div>
-               </div>
-             </div>
-
-            {% endif %}
 
 
+
+        {% if not products %}
+        <div class="container" style="margin-top:50px;min-width:560px; margin-left:0px">
+
+         <div class="row">
+            <h2 style="margin-left:22px; color:blue">Our Inventory</h2>
+            <div class="col-md-12" >
+            <form  action="/" method ="POST" >
+              <button style="margin:8px " type="submit" name="department" value="snack" class="btn btn-primary btn-lg">SNACK</button>
+              <button style="margin:8px " type="submit" name="department" value="candy" class="btn btn-success btn-lg">CANDY</button>
+              <button style="margin:8px" type="submit" name="department" value="water"class="btn btn-info btn-lg">WATER</button>
+              <button style="margin:8px " type="submit" name="department" value="juice"class="btn btn-warning btn-lg">JUICE</button>
+              <button style="margin:8px " type="submit" name="department" value="soda" class="btn btn-danger btn-lg">SODA</button>
+            </form>
+            </div>
+
+          </div>
         </div>
 
+       {% endif %}
+
       </div>
-     </div>
+    </div>
+
+  </div>
 
 
 
-</div>
+
 
 </body>
 </html>

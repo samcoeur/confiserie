@@ -1,0 +1,403 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+    <head>
+
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width, initial-scale=1">
+      <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+      <link rel="stylesheet" href="static/product.css">
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+      <script src="{{url_for('static', filename='order.js')}}"></script>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+
+
+
+    </head>
+
+    <body>
+
+
+
+      <div class="jumbotron text-center"  style="min-width:550px;" >
+        <h1>CONFECTIONARY HADDADI </h1>
+        <p>Page d'Administration</p>
+
+          <form class="form-inline">
+            <div class="input-group">
+              <input type="text" class="form-control" size="50" placeholder="search" required>
+              <div class="input-group-btn">
+                <button type="button" class="btn btn-danger">Search</button>
+              </div>
+            </div>
+          </form>
+      </div>
+
+
+
+
+      <div class="container-fluid" align-items="center" style="margin-top:50px">
+
+
+        <form  action="/mycustomer" method ="POST" style="margin-left:20px ; margin-top:-20px" >
+
+          <button style="margin:10px;" type="submit" name="action" value="users" class="btn btn-primary btn-lg">users</button>
+          <button style="margin:10px;" type="submit" name="action" value="customers" class="btn btn-primary btn-lg">customers</button>
+          <button  style="margin:10px;"type="submit" name="action" value="carts" class="btn btn-success btn-lg">carts</button>
+          <button  style="margin:10px;"type="submit" name="action" value="deliveries" class="btn btn-info btn-lg">deliveries</button>
+          <button  style="margin:10px;"type="submit" name="action" value="client"class="btn btn-warning btn-lg">Client</button>
+          <button  style="margin:10px;"type="submit" name="department" value="soda" class="btn btn-danger btn-lg">SODA</button>
+          <button style="margin:10px;" type="submit" name="department" value="new" class="btn btn-danger btn-lg">New product</button>
+        </form>
+
+
+{% if customers %}
+
+  <div class="container-fluid" style="background:#32c8de;">
+    <h2>USERS </h2>
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th>Firstname</th>
+          <th>Lastname</th>
+          <th>Email</th>
+          <th>Username</th>
+          <th>Phone Number</th>
+          <th>Adress</th>
+          <th>Business</th>
+          <th>Relation</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for customer in customers %}
+        <tr>
+          <td>{{ customer.firstname }}</td>
+          <td>{{ customer.lastname }}</td>
+          <td>{{ customer.email }}</td>
+          <td>{{ customer.username }}</td>
+          <td>{{ customer.phone_number }}</td>
+          <td>{{ customer.address }}</td>
+          <td>{{ customer.business_name }}</td>
+          <td>{{ customer.relation }}</td>
+          <td>
+            <form action="/customercart" method="POST">
+                  <select name = "detail" style="background:blue;color:white;font-size:20px">
+                    <option>carts</option>
+                    <option>orders</option>
+                  </select>
+                  <input style="display:none" type="number" name ="customer_id" value="{{ customer.user_id }}">
+                  <button type="submit" style="background:green;color:white;font-size:20px">view</button>
+             </form>
+         </td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
+
+  {% if users %}
+
+  <div class="container-fluid" style="background:#32c8de;;">
+    <h2>USERS </h2>
+    <table class="table table-hover table-striped">
+      <thead>
+        <tr>
+          <th>User_id</th>
+          <th>Username</th>
+          <th>Email</th>
+        </tr>
+      </thead>
+      <tbody>
+        {% for user in users %}
+        <tr>
+          <td>{{ user.id }}</td>
+          <td>{{ user.username }}</td>
+          <td>{{ user.email }}</td>
+        </tr>
+        {% endfor %}
+      </tbody>
+    </table>
+  </div>
+  {% endif %}
+
+
+
+
+
+{% if carts %}
+
+<div class="container-fluid" style="background:#32c8de;">
+  <div class="container" style="margin-top:50px">
+  <div class="row">
+    <div class="col-md-6">
+    </div>
+    <div class="col-md-6">
+    <form id ="#form" action="customercart" method="POST">
+      <select style="background:black;color:white;font-size:28px" name="status" onchange="form.submit()">
+        <option >Select Cart</option>
+        <option >All Carts</option>
+        <option >Complete</option>
+        <option >Submit</option>
+        <option >Pending</option>
+      </select>
+      {% if carts[0].filter == "yes" %}
+       <input style="display:none" type="number" name="customer_id" value= "{{ carts[0].customer_id }}">
+      {% endif %}
+    </form>
+    </div>
+  </div>
+  </div>
+
+  <h2>CARTS </h2>
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>CART ID</th>
+        <th>CUSTOMER NAME</th>
+        <th>TOTAL PRODUCTS</th>
+        <th>TOTAL UNITS</th>
+        <th>TOTAL COST</th>
+        <th>DELIVERY ADDRESS</th>
+        <th>STATUS</th>
+        <th>DATE</th>
+        <th>comment</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for cart in carts %}
+        <tr>
+            <td>{{ cart.id }}</td>
+            <td>{{ cart.customername }}</td>
+            <td>{{ cart.product_units }}</td>
+            <td>{{ cart.total_units }}</td>
+            <td>{{ cart.total_cost }}</td>
+            <td>{{ cart.address }}</td>
+            <td>{{ cart.status }}</td>
+            <td>{{ cart.date }}</td>
+            <td>{{ cart.comment }}</td>
+        <td>
+           <form action="/delivery" method="post">
+             <button type="submit"style="background:white;color:black;font-size:20px"> view Details</button>
+             <input type="number" style="display:none" name="cart_id" value="{{ cart.id }}" >
+             <input type="number" style="display:none" name="customer_id" value= "{{ cart.customer_id }}" >
+             <input type="text" style="display:none" name="customername" value= "{{ cart.customername }}" >
+             <input type="text" style="display:none" name="address" value= "{{ cart.address }}" >
+           </form>
+        </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+</div>
+
+{% endif %}
+
+{% if cart %}
+
+<div class="container" style="margin-top:50px;background:#32c8de;">
+  <div class="row">
+    <div class="col-md-6">
+    </div>
+    <div class="col-md-6">
+    <form id ="#form" action="customercart" method="POST">
+      <select style="background:black;color:white;font-size:28px" name="status" onchange="form.submit()">
+        <option >Select Cart</option>
+        <option >All Carts</option>
+        <option >Complete</option>
+        <option >Submit</option>
+        <option >Pending</option>
+      </select>
+       <input style="display:none" type="number" name="customer_id" value= "{{ cart.customer_id }}">
+    </form>
+    </div>
+  </div>
+  </div>
+{% endif %}
+
+
+
+
+
+ {% if delivery_dates %}
+
+  <div class= "container" style="background:#32c8de;margin-top:100px">
+    <div class="row">
+      <div class ="col-md-5 align-items-center">
+         <form action="delivery" method="POST" >
+          <select id="select" name="date" onchange="form.submit()" style="font-size:26px;background:#32c8de;color:white">
+            {% if selected_day %}
+            <option id="select_date" style="background:black">{{ selected_date }}</option>
+            {% else %}
+            <option id="select_date" style="background:black">Select Date</option>
+            {% endif %}
+            {% for date in delivery_dates %}
+            <option style="background:black">{{ date.delivery_date }}</option>
+            {% endfor %}
+          </select>
+          </form>
+      </div>
+
+      <div class="col-md-5">
+        <h2 style="color:white"> upcoming delivery {{ delivery_date.day }}, {{ delivery_date.date }}</h2>
+      </div>
+
+    </div>
+  </div>
+
+ <div class="container-fluid" style="margin-top:50px;background:#32c8de;">
+
+   <h2>DELIVERIES</h2>
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>CART ID</th>
+        <th>CUSTOMER ID</th>
+        <th>CUSTOMER NAME</th>
+        <th>DELIVERY ADDRESS</th>
+        <th>CART DATE</th>
+        <th>STATUS</th>
+        <th>DELIVERY DATE</th>
+        <th>DELIVERY DAY</th>
+        <th>COMMENT</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for delivery in deliveries %}
+        <tr>
+            <td>{{ delivery.cart_id }}</td>
+            <td>{{ delivery.customer_id }}</td>
+            <td>{{ delivery.customername }}</td>
+            <td>{{ delivery.address }}</td>
+            <td>{{ delivery.date }}</td>
+            <td>{{ delivery.status }}</td>
+            <td>{{ delivery.delivery_date }}</td>
+            <td>{{ delivery.delivery_day }}</td>
+              <td>{{ delivery.note }}</td>
+            <td>
+              <form action="/delivery" method="post">
+                <button type="submit" name="action" value="details" style="background:green;color:white;font-size:20px">details</button>
+                {% if delivery.note != "valider" and delivery.note!= "annuler" %}
+                {% if open_delivery_window == TRUE %}
+                <button type="submit" name="action" value="valider" style="background:blue;font-size:20px">valider</button>
+                <button type="submit" name="action" value="annuler" style="background:red;font-size:20px">annuler</button>
+                {% endif %}
+                {% endif %}
+                <input type="number" style="display:none" name="cart_id" value="{{ delivery.cart_id }}" >
+                <input type="number" style="display:none" name="customer_id" value= "{{ delivery.customer_id }}" >
+                <input type="text" style="display:none" name="customername" value= "{{ delivery.customername }}" >
+                <input type="text" style="display:none" name="address" value= "{{ delivery.address }}" >
+              </form>
+            </td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+ </div>
+
+{% endif %}
+
+
+
+
+{% if orders %}
+<div class="container-fluid" style="background:#32c8de;">
+
+<div class="container-fluid">
+  <div class="row">
+   <div class="col-md-12" >
+    <h2>CARTS </h2>
+  <table class="table table-hover table-striped">
+    <thead>
+      <tr>
+        <th>CART ID</th>
+        <th>CUSTOMER NAME</th>
+        <th>TOTAL PRODUCTS</th>
+        <th>TOTAL UNITS</th>
+        <th>TOTAL COST</th>
+        <th>DELIVERY ADDRESS</th>
+        <th>STATUS</th>
+        <th>DATE</th>
+        <th>comment</th>
+      </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ orders[0].id }}</td>
+            <td>{{ orders[0].customername }}</td>
+            <td>{{ orders[0].product_units }}</td>
+            <td>{{ orders[0].total_units }}</td>
+            <td>{{ orders[0].total_cost }}</td>
+            <td>{{ orders[0].address }}</td>
+            <td>{{ orders[0].status }}</td>
+            <td>{{ orders[0].date }}</td>
+            <td>{{ orders[0].comment }}</td>
+       </tr>
+
+    </tbody>
+  </table>
+   </div>
+  </div>
+</div>
+</div>
+
+<div class="container-fluid">
+<div class="shop-items">
+
+     <div class="row">
+      <div class="col-md-5">
+
+      </div>
+      <div class="col-md-4">
+      <h4 style="align-items:center">{{ orders[0].customername }}</h4>
+      </div>
+      <div class="col-md-3">
+
+    </div>
+   </div>
+
+     <div class="container-fluid">
+       <h style=" color:lightgreen;">ORDERS History </h>
+
+       <div class="row" >
+           {% for product in orders %}
+           <div class="col-md-3 col-sm-6">
+             <!-- Restaurant Item -->
+             <div class="item">
+               <!-- Item's image -->
+               <img class="img" src="static/images/{{ product.img_name }}" alt="">
+               <!-- Item details -->
+               <div class="item-dtls">
+                 <!-- product title -->
+                 <h><a href="#">{{ product.name }}</a></h>
+                 <h5 style="color:black"> UNITS : {{ product.units }} </h5>
+                 <h5>PRICE  : {{ product.price }} DA</h5>
+                 <h5 style="color:GREEN">TOTAL : {{ product.cost }}  DA</h5>
+               </div>
+               <!-- add to cart btn -->
+
+             </div>
+            </div>
+          {% endfor %}
+       </div>
+
+     </div>
+   </div>
+  </div>
+
+{% endif %}
+
+
+
+
+
+</div>
+
+    </body>
+
+    </html>

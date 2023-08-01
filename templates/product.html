@@ -22,7 +22,7 @@
 
 
 
-      <div class="jumbotron text-center" >
+      <div class="jumbotron text-center"  style="min-width:550px;" >
         <h1>CONFECTIONARY HADDADI </h1>
         <p>Page d'Administration</p>
 
@@ -39,16 +39,18 @@
 
 
 
-      <div class="container-fluid" style="margin-top:50px">
+      <div class="container-fluid" align-items="center" style="margin-top:50px">
+
         <form  action="/myproduct" method ="POST" style="margin-left:20px ; margin-top:-20px" >
-          <button type="submit" name="department" value="all" class="btn btn-primary btn-lg">ALL</button>
-          <button type="submit" name="department" value="snack" class="btn btn-primary btn-lg">SNACK</button>
-          <button type="submit" name="department" value="candy" class="btn btn-success btn-lg">CANDY</button>
-          <button type="submit" name="department" value="water"class="btn btn-info btn-lg">WATER</button>
-          <button type="submit" name="department" value="juice"class="btn btn-warning btn-lg">JUICE</button>
-          <button type="submit" name="department" value="soda" class="btn btn-danger btn-lg">SODA</button>
-          <button style="margin-left:250px" type="submit" name="department" value="new" class="btn btn-danger btn-lg">New product</button>
+          <button style="margin:10px;" type="submit" name="department" value="all" class="btn btn-primary btn-lg">ALL</button>
+          <button style="margin:10px;" type="submit" name="department" value="snack" class="btn btn-primary btn-lg">SNACK</button>
+          <button  style="margin:10px;"type="submit" name="department" value="candy" class="btn btn-success btn-lg">CANDY</button>
+          <button  style="margin:10px;"type="submit" name="department" value="water"class="btn btn-info btn-lg">WATER</button>
+          <button  style="margin:10px;"type="submit" name="department" value="juice"class="btn btn-warning btn-lg">JUICE</button>
+          <button  style="margin:10px;"type="submit" name="department" value="soda" class="btn btn-danger btn-lg">SODA</button>
+          <button style="margin:10px;" type="submit" name="department" value="new" class="btn btn-danger btn-lg">New product</button>
         </form>
+
 
 
 {% if customers %}
@@ -156,16 +158,15 @@
              <form action = "/newproduct" method="post">
 
                   <div class="col-md-5">
-                    <img src= "static/images/twix.jpg" name="img" id ="img" class="img" >
-                    <input style="display:none" readonly id="img_name" name="img_name" value="">
+                    <img src= "static/images/twix.jpg" for="myFile" name="img" id ="img" class="img" >
+                    <input style="display:none" readonly id="img_name"  name="img_name" value="">
                   </div>
-
 
                   <div class="col-md-7">
                     <div class="element">
                    <div class="form-inline">
                       <label>Name   : </label>
-                      <input type="text" name="name" autofocus ">
+                      <input type="text" name="name" autofocus >
                    </div>
                    <div class="form-inline">
                     <label>Price   :</label>
@@ -187,7 +188,7 @@
                    </div>
                    <div class="form-inline">
                     <label> img name : </label>
-                    <input type="file" id="myFile" name="img_file" onclick="loadimg()" onchange="loadimg()">
+                    <input type="file" id="myFile" name="img_file">
                     <input type="number" name="product_id"  style="display:none"  >
                     <input type="number" name="uom_id" value="1" style="display:none"  >
                    </div>

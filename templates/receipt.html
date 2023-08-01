@@ -8,7 +8,7 @@
 {% block receipt %}
 
 {% if receipts %}
-
+<div class="register">
 <div class="container">
     <div class="col-md-11">
        <div class="invoice">
@@ -37,18 +37,17 @@
                 <small>to</small>
                 <address class="m-t-5 m-b-5">
                    <strong class="text-inverse">{{ receipts[0].customername }}</strong><br>
-                   Street Address<br>
-                   City, Zip Code<br>
-                   Phone: (123) 456-7890<br>
-                   Fax: (123) 456-7890
+                   {{ receipts[0].business_name}} <br>
+                   address {{ receipts[0].address }} <br>
+                   phone {{ receipts[0].phone_number }} <br>
                 </address>
              </div>
              <div class="invoice-date">
-                <small>Invoice / July period</small>
-                <div class="date text-inverse m-t-5">August 3,2012</div>
+                <small>date de livraison / {{ receipts[0].date }} </small>
+                <div class="date text-inverse m-t-5">{{ receipts[0].date }}</div>
                 <div class="invoice-detail">
-                   #0000123DSS<br>
-                   Services Product
+                   methode : livraison<br>
+                   Services Produits
                 </div>
              </div>
           </div>
@@ -130,6 +129,7 @@
        </div>
     </div>
  </div>
+</div>
 
 {% endif %}
 
