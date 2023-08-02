@@ -10,11 +10,10 @@ from flask import redirect, render_template, session
 from functools import wraps
 from flask import make_response
 import os
-
+from flask_session import Session
 from weasyprint import HTML
 from pathlib import Path
 import sys
-import pdfkit
 from flask_login import login_manager
 
 

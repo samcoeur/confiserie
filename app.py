@@ -35,11 +35,9 @@ def index():
         department = request.form.get("department").lower()
         products=loadproduct(db,department)
         return render_template("layout.html", products=products,  message="Select a product")
+    
     products = db.execute("select * from products")
-    if session.get("user_id") != 1:
-        return render_template("layout.html", products=products,cart_notification = notification(db))
-    else :
-        return render_template("layout.html", products=products, cart_notification = notification(db))
+    return render_template("layout.html", products=products)
 
 
 

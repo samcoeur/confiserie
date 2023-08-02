@@ -180,9 +180,9 @@
             <td>{{ cart.status }}</td>
             <td>{{ cart.date }}</td>
             <td>{{ cart.comment }}</td>
-        <td>
+         <td>
            <form action="/delivery" method="post">
-             <button type="submit"style="background:white;color:black;font-size:20px"> view Details</button>
+             <button type="submit" name="action" value="details" style="background:white;color:black;font-size:20px">details</button>
              <input type="number" style="display:none" name="cart_id" value="{{ cart.id }}" >
              <input type="number" style="display:none" name="customer_id" value= "{{ cart.customer_id }}" >
              <input type="text" style="display:none" name="customername" value= "{{ cart.customername }}" >
