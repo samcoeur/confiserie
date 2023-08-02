@@ -10,12 +10,12 @@ from helper import loadproduct, login_required , loadorder , notification , logi
 generate_delivery_date,open_order_window,add_recent_deliveries,get_deliveries ,get_delivery_dates
 
 # db
-app = Flask(__name__)
+
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///product.db")
 
-
+app = Flask(__name__)
 
 
 app.config["SESSION_PERMANENT"] = False
@@ -665,3 +665,8 @@ def customercart():
 @login_admin_required
 def company():
     return render_template("decoration.html", products=loadproduct(db,"snack"))
+
+
+if __name__ == "__main__":
+    app.run(debug=False,host='0.0.0.0')
+    
