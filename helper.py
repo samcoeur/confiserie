@@ -195,6 +195,7 @@ def generate_delivery_date():
 
 def open_order_window():
     day = datetime.today().weekday()
+    print(day)
     return ((day != 2) and (day != 6))
 
 

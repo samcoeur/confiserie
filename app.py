@@ -34,10 +34,10 @@ def index():
     if request.method == "POST":
         department = request.form.get("department").lower()
         products=loadproduct(db,department)
-        return render_template("layout.html", products=products,  message="Select a product")
+        return render_template("index.html", products=products,  message="Select a product")
     
     products = db.execute("select * from products")
-    return render_template("layout.html", products=products)
+    return render_template("index.html", products=products)
 
 
 
@@ -118,6 +118,7 @@ def login():
                add_recent_deliveries(db,delivery_date,delivery_day)
 
         session["relation"] = db.execute("select relation from customers where user_id = ?", session["user_id"])[0]["relation"]
+        session["day"] = datetime.now().weekday()
         session["cart_id"] = createcart(db,session["user_id"])
         flash("sucessfully logged in Welcome")
         return redirect("/")
@@ -601,7 +602,7 @@ def delivery():
             createcart(db,customer_id)
             return redirect("/delivery")
 
-
+    
        delivery_dates = db.execute( "select delivery_date from deliveries group by delivery_date order by delivery_date DESC ")
        return render_template("customer.html",delivery_date = generate_delivery_date(),deliveries = get_deliveries(db,delivery_dates[0]["delivery_date"]),open_delivery_window = not open_order_window(), delivery_dates = get_delivery_dates(db))
 

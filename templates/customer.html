@@ -283,7 +283,7 @@
               <form action="/delivery" method="post">
                 <button type="submit" name="action" value="details" style="background:green;color:white;font-size:20px">details</button>
                 {% if delivery.note != "valider" and delivery.note!= "annuler" %}
-                {% if open_delivery_window == TRUE %}
+                {% if open_delivery_window == True %}
                 <button type="submit" name="action" value="valider" style="background:blue;font-size:20px">valider</button>
                 <button type="submit" name="action" value="annuler" style="background:red;font-size:20px">annuler</button>
                 {% endif %}
