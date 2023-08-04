@@ -1,10 +1,10 @@
-from flask import Flask
+
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask import Flask, flash, redirect, render_template, request, session
 from flask_session import Session
 from cs50 import SQL
 from datetime import datetime
-from flask_login import login_manager,login_required, logout_user
+
 
 from helper import loadproduct, login_required , loadorder , notification , login_admin_required, createcart,usercart_id ,updatecart,customer_data,\
 generate_delivery_date,open_order_window,add_recent_deliveries,get_deliveries ,get_delivery_dates
