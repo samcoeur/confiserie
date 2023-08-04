@@ -11,7 +11,7 @@ from functools import wraps
 from flask import make_response
 import os
 from flask_session import Session
-from weasyprint import HTML
+
 from pathlib import Path
 import sys
 from flask_login import login_manager
@@ -160,17 +160,6 @@ def updatecart(db,user_id):
             user_id
                 )
       return 0
-
-def generatepdf(html_file):
-     """Generate a PDF file from a string of HTML."""
-     #/home/ubuntu/.local/lib/python3.11/site-packages/wkhtmltopdf
-     config = pdfkit.configuration(wkhtmltopdf = "/home/ubuntu/.local/lib/python3.11/site-packages/")
-     pdfkit.from_url('http://google.com', 'out.pdf',configuration = config)
-     pdf = pdfkit.from_string(html_file,False)
-     response = make_reponse(pdf)
-     respopnse.headers['Content-Type'] ="application/pdf"
-     respopnse.headers['Content-Disposition'] = 'inline; filename=out.pdf'
-     return response
 
 
 def customer_data(db,portal):
