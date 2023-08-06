@@ -1,10 +1,4 @@
-import csv
-import datetime
-import pytz
-import requests
-import subprocess
-import urllib
-import uuid
+
 from datetime import datetime, timedelta
 from flask import redirect, render_template, session
 from functools import wraps
@@ -12,14 +6,12 @@ from flask import make_response
 import os
 from flask_session import Session
 
-from pathlib import Path
-import sys
-from flask_login import login_manager
+
 
 
 WKHTMLTOPDF_PATH = '/usr/local/bin/wkhtmltopdf'
 
-
+ 
 def login_required(f):
     """
     Decorate routes to require login.
