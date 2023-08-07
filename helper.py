@@ -1,21 +1,12 @@
-import csv
-import datetime
-import pytz
-import requests
-import subprocess
-import urllib
-import uuid
-from datetime import datetime, timedelta
-from flask import redirect, render_template, session
-from functools import wraps
-from flask import make_response
-import os
 
-from weasyprint import HTML
-from pathlib import Path
-import sys
-import pdfkit
-from flask_login import login_manager
+
+
+from datetime import datetime, timedelta
+from functools import wraps
+from flask_session import Session
+from flask import Flask, flash, redirect, render_template, request, session
+
+
 
 
 WKHTMLTOPDF_PATH = '/usr/local/bin/wkhtmltopdf'
@@ -162,17 +153,6 @@ def updatecart(db,user_id):
                 )
       return 0
 
-def generatepdf(html_file):
-     """Generate a PDF file from a string of HTML."""
-     #/home/ubuntu/.local/lib/python3.11/site-packages/wkhtmltopdf
-     config = pdfkit.configuration(wkhtmltopdf = "/home/ubuntu/.local/lib/python3.11/site-packages/")
-     pdfkit.from_url('http://google.com', 'out.pdf',configuration = config)
-     pdf = pdfkit.from_string(html_file,False)
-     response = make_reponse(pdf)
-     respopnse.headers['Content-Type'] ="application/pdf"
-     respopnse.headers['Content-Disposition'] = 'inline; filename=out.pdf'
-     return response
-
 
 def customer_data(db,portal):
     data = db.execute("select * from  {}".format(portal))
@@ -196,6 +176,7 @@ def generate_delivery_date():
 
 def open_order_window():
     day = datetime.today().weekday()
+    print(day)
     return ((day != 2) and (day != 6))
 
 

@@ -1,0 +1,13 @@
+Flask-Session==0.5.0
+cs50==9.2.5
+decorator==5.1.1
+Flask==2.3.2
+Flask-Session==0.5.0
+Jinja2==3.1.2
+sql==2022.4.0
+SQLAlchemy==1.4.46
+sqlparse==0.4.4
+webencodings==0.5.1
+websocket-client==1.6.1
+Werkzeug==2.3.6
+gunicorn == 21.2.0
